@@ -1,1 +1,4 @@
 venv
+app/__pycache__
+.mypy_cache
+*.pyc

@@ -1,4 +1,5 @@
+from pathlib import Path
 
 class Config(object):
-    pass
+    DATABASE_PATH = Path(Path.cwd(), "db.db")
 
