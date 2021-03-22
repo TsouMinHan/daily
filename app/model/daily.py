@@ -1,4 +1,5 @@
 import sqlite3
+import functools
 
 from app import Config
 
@@ -27,6 +28,19 @@ class MainDB:
         self.db = DBHandler()
         self.table_name = "daily"
 
+    def _execute(self, sql):
+        with self.db:
+
+            self.db.cur.execute(sql)
+            self.db.conn.commit()
+
+    def _fetch(self, sql):
+        with self.db:
+            self.db.cur.execute(sql)
+            rows = self.db.cur.fetchall()
+
+        return rows
+
     def create_table(self):
         with self.db:
             sql = f"""
@@ -40,11 +54,15 @@ class MainDB:
             self.db.cur.execute(sql)
     
     def append(self, content, date):
-        with self.db:
-            sql = f"""
+        sql = f"""
                     INSERT INTO {self.table_name} (content, date)
-                    VALUES ('{content}', '{date}');
+                    VALUES ('{content}', '{date}')
             """
-            print(sql)
-            self.db.cur.execute(sql)
-            self.db.conn.commit()
+        
+        self._execute()
+    
+    def read(self):
+        sql = f"""
+            SELECT * FROM {self.table_name}
+        """
+        return self._fetch(sql)
