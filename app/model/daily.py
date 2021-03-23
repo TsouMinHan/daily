@@ -59,7 +59,7 @@ class MainDB:
                     VALUES ('{content}', '{date}')
             """
         
-        self._execute()
+        self._execute(sql)
     
     def read(self):
         sql = f"""

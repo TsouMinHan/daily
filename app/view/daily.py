@@ -11,9 +11,9 @@ db = MainDB()
 def save_daily():
     data = request.get_json()
     content = data["content"]
-    date = data["date"]    
+    timestamp = data["timestamp"]
     
-    db.append(content, datetime.strptime(date, "%Y-%m-%d %H:%M:%S"))
+    db.append(content, datetime.fromtimestamp(timestamp))
 
     return jsonify(data)
 
