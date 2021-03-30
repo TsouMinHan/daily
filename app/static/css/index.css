@@ -1,7 +1,53 @@
-.top-space{
+/* .top-space{
     margin-top: 3%;
+} */
+
+.flex-container {
+    display: flex;
+    height: 100vh;
 }
 
-.txtErea {
+.flex-left {
+    flex-grow: 1;
     display: flex;
+    height: 100vh;
+    flex-direction: column;
+
+}
+
+.flex-center {
+    flex-grow: 2;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.flex-right {
+    height: 100vh;
+    flex-grow: 1;
+}
+.txtErea-flex {
+    /* align-self: flex-end; */
+    margin-top: auto;
+    /* display: flex;
+    justify-content: flex-end; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+}
+
+.article-flex {
+    /* align-self: flex-start; */
+    /* display: flex;
+    justify-content: flex-end; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+}
+
+.calender {
+    height: 30vh;
+}
+
+.review {
+    height: 50vh;
 }
