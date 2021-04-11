@@ -1,4 +1,3 @@
-
 let data = {
     title: "daily",
     dailys: []
@@ -8,23 +7,22 @@ var app = new Vue({
     el: '#app',
     delimiters: ["[[", "]]"],
     data: data,
-    mounted: function () {
+    mounted: function() {
         this.loadData();
     },
     methods: {
-        submitData: function () {
+        submitData: function() {
             const data = {
                 content: CKEDITOR.instances["editor"].getData(),
-                timestamp: Math.round(Date.now()/1000) // now 得到的是毫秒，再除 1000 變成秒數
+                timestamp: Math.round(Date.now() / 1000) // now 得到的是毫秒，再除 1000 變成秒數
             }
             let xhr = new XMLHttpRequest();
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     const results = JSON.parse(xhr.responseText);
-                    
-                    if (results.status == "success"){
-                        console.log(results.status)
+
+                    if (results.status == "success") {
                         CKEDITOR.instances["editor"].setData(""); // clear textarea
                     }
                 }
@@ -34,13 +32,13 @@ var app = new Vue({
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.send(JSON.stringify(data));
         },
-        loadData: function () {
+        loadData: function() {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     const results = JSON.parse(xhr.responseText);
-                    
-                    if (results.status == "success"){
+
+                    if (results.status == "success") {
                         data.dailys = results.dailys;
                     }
                 }
